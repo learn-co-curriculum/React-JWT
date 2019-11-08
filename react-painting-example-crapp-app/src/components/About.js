@@ -2,6 +2,11 @@ import React from 'react';
 import Api from '../services/api'
 
 export default class About extends React.Component {
+  componentDidMount() {
+    if (!this.props.user.id) {
+      this.props.history.push('/login')
+    }
+  }
   render() {
     return (
       <div>

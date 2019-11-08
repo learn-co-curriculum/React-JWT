@@ -15,9 +15,17 @@ const Navbar = props => {
         <Link to="/paintings" className="item">
           Paintings
         </Link>
-        <Link to="/login" className="item">
-          <div className="ui primary button">Sign In</div>
-        </Link>
+        {
+          props.user.id
+          ? 
+            <Link to="/login" className="item" onClick={() => {props.handleLogout()}}>
+            <div className="ui primary button">Log Out</div>
+          </Link>
+          :
+          <Link to="/login" className="item">
+            <div className="ui primary button">Sign In</div>
+          </Link>
+        }
       </div>
     </div>
   );

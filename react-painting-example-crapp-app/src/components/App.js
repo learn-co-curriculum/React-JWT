@@ -11,25 +11,25 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      auth: { user: {} }
-    };
+      auth: {}
+    }
   }
 
   handleLogin(user){
     this.setState({
-      auth: { user }
+      auth: user
     })
-    localStorage.setItem('token', user.token)
+    console.log('phandle log in in appjs')
   }
 
-  handleLogout(user){
+  handleLogout(){
     this.setState({
-      auth: { user: {} }
+      auth: {} 
     })
-    localStorage.removeItem('token')
   }
 
   render() {
+    console.log('state', this.state)
     return (
       <div>
         <Navbar
@@ -37,12 +37,18 @@ class App extends Component {
           title="Painterest"
           description="our app"
           icon="paint brush"
+          handleLogout={() => this.handleLogout()}
+          user={this.state.auth}
         />
         <div className="ui container grid">
           <div id="content" className="sixteen wide column">
-            <Route exact path="/" component={About} />
-            <Route path="/login" component={Login} />
-            <Route path="/paintings" component={PaintingsContainer} />
+            <Route exact path="/" render={(routeParams) => {
+              return <About {...routeParams} user={this.state.auth} />
+            }} />
+
+            <Route path="/login" render={(routeParams) => {
+              return <Login {...routeParams} handleLogin={(user) => this.handleLogin(user)} />
+            }} />
           </div>
         </div>
       </div>
@@ -52,16 +58,3 @@ class App extends Component {
 
 export default App;
 
-
-
-
-
-
-
-
-
-
-
-            // <Route exact path="/" render={(routeProps) => {
-              // return <About {...routeProps} handleLogin={(user) => {this.handleLogin(user)}}/>
-            // }} />

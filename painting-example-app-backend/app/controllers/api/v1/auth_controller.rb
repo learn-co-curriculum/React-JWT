@@ -1,5 +1,19 @@
 class Api::V1::AuthController < ApplicationController
   def create
+    user = User.find_by(username: params[:username])
+
+    if user && user.authenticate(params[:password])
+      render json: { id: user.id, username: user.username }
+    else
+      render json: { error: 'invalid credentials' }, status: 401
+    end
+
+
+
+    # find user
+    # check if pw matches
+    #  if both work out then send user info to the front
+    #  send an error
   end
 
   def show
