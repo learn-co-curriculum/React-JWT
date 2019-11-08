@@ -2,30 +2,6 @@ import React from 'react';
 import Api from '../services/api'
 
 export default class About extends React.Component {
-  componentDidMount(){
-    const token = localStorage.getItem('token')
-    if(!token) {
-      this.props.history.push('/login')
-    }
-    else {
-      Api.currentUser(token)
-        .then(data => {
-          if(data.error){
-            this.props.history.push('/login')
-          } else {
-            this.props.handleLogin(data)
-          }
-        })
-    }
-    // grab token from local storage
-    // if none exists
-    // redirect to login
-    // if it does exist check backend if it's valid
-    //    if not then redirect to login
-    // else 
-    // render and update app.js state to include user info
-  }
-
   render() {
     return (
       <div>

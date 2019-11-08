@@ -13,24 +13,11 @@ const Navbar = props => {
       </Link>
       <div className="right menu">
         <Link to="/paintings" className="item">
-          index
+          Paintings
         </Link>
-        <Link to="/paintings/new" className="item">
-          new
+        <Link to="/login" className="item">
+          <div className="ui primary button">Sign In</div>
         </Link>
-        {
-          props.user.id ? 
-            <a className="item" onClick={() => {
-              props.handleLogout()
-              props.history.push('/login')
-            }}>
-            <div className="ui primary button">Log out</div>
-          </a>
-          :
-          <Link to="/login" className="item">
-            <div className="ui primary button">Sign In</div>
-          </Link>
-        }
       </div>
     </div>
   );

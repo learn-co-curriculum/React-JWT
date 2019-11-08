@@ -37,18 +37,11 @@ class App extends Component {
           title="Painterest"
           description="our app"
           icon="paint brush"
-          user={this.state.auth.user}
-          handleLogout={() => this.handleLogout()}
         />
         <div className="ui container grid">
           <div id="content" className="sixteen wide column">
-            <Route exact path="/" render={(routeProps) => {
-              return <About {...routeProps}  handleLogin={(user) => {this.handleLogin(user)}}/>
-            }} />
-
-            <Route path="/login" render={(routeProps) => {
-              return <Login {...routeProps} handleLogin={(user) => {this.handleLogin(user)}}/>
-            }} />
+            <Route exact path="/" component={About} />
+            <Route path="/login" component={Login} />
             <Route path="/paintings" component={PaintingsContainer} />
           </div>
         </div>
